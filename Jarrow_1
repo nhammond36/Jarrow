@@ -1,0 +1,57 @@
+#Jarrow 1 Fixed income terminology
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+#
+
+# ============== Python array syntax ===================
+# Python indexes and slices for a six-element list.
+#Indexes enumerate the elements, slices enumerate the spaces between the elements.
+#
+#Index from rear:    -6  -5  -4  -3  -2  -1      a=[0,1,2,3,4,5]    a[1:]==[1,2,3,4,5]
+#Index from front:    0   1   2   3   4   5      len(a)==6          a[:5]==[0,1,2,3,4]
+#                   +---+---+---+---+---+---+    a[0]==0            a[:-2]==[0,1,2,3]
+#                   | a | b | c | d | e | f |    a[5]==5            a[1:2]==[1]
+#                   +---+---+---+---+---+---+    a[-1]==5           a[1:-1]==[1,2,3,4]
+#Slice from front:  :   1   2   3   4   5   :    a[-2]==4
+#Slice from rear:   :  -5  -4  -3  -2  -1   :
+#                                                b=a[:]
+#                                                b==[0,1,2,3,4,5] (shallow copy of a)
+# ======================================================
+#
+# Initial forward rate structure
+#fwd = [1.07 1.065 1.06 1.055 1.06 1.065 1.07 1.075 1.08 1.085 1.09]
+fwd = np.array([.07 1.065 1.06 1.055 1.06 1.065 1.07 1.075 1.08 1.085 1.09])
+
+
+# Compute bond prices
+# P(t,t+j)= =1/(f(t,t)*f(t,t+1)*...*f(t,t+j-1))
+# np.multiply(a,b)
+den = fwd[0]
+def price(fwd):
+for i in range(len(fwd)):
+den= den*fwd[i]
+# den= [fwd[1]*fwd[2] for i in range(len(fwd))]
+p[i]=1/den
+return p
+    print ("This is number %s" % i)
+
+
+# Compute yields
+def yield(p):
+for i in range(len(p)):
+y[i]=(1/p[i])**i
+return y
+    print ("This is number %s" % i)
+
+# EXMAPLE def
+$def fib(n):    # write Fibonacci series up to n
+#   """Print a Fibonacci series up to n."""
+#   a, b = 0, 1
+#        while a < n:
+#...         print(a, end=' ')
+#...         a, b = b, a+b
+#...     print()
+#...
+# Now call the function we just defined:
+#... fib(2000)
